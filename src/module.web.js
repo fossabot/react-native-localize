@@ -101,6 +101,8 @@ export let constants: LocalizationConstants = generateConstants(
 );
 
 window.addEventListener("languagechange", () => {
-  constants = generateConstants(navigator.languages);
+  constants = generateConstants(
+    navigator.languages ? navigators.languages : [navigator.userLanguage],
+  );
   handlers.forEach(handler => handler());
 });
