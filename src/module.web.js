@@ -97,7 +97,7 @@ function generateConstants(
 
 export const handlers: Set<Function> = new Set();
 export let constants: LocalizationConstants = generateConstants(
-  navigator.languages,
+  navigator.languages ? navigators.languages : [navigator.userLanguage],
 );
 
 window.addEventListener("languagechange", () => {
