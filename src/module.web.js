@@ -97,12 +97,12 @@ function generateConstants(
 
 export const handlers: Set<Function> = new Set();
 export let constants: LocalizationConstants = generateConstants(
-  navigator.languages ? navigators.languages : [navigator.userLanguage],
+  navigator.languages ? navigator.languages : [navigator.userLanguage],
 );
 
 window.addEventListener("languagechange", () => {
   constants = generateConstants(
-    navigator.languages ? navigators.languages : [navigator.userLanguage],
+    navigator.languages ? navigator.languages : [navigator.userLanguage],
   );
   handlers.forEach(handler => handler());
 });
