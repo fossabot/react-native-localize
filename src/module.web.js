@@ -11,7 +11,7 @@ import type { Locale, LocalizationConstants } from "./types";
 
 function getCountryCode(languageTagParts: string[]): ?string {
   // overwrite Latin America and Caribbean region
-  return languageTagParts[1] === "419" ? "UN" : languageTagParts[1];
+  return languageTagParts[1] === "419" ? "UN" : languageTagParts[1] || "";
 }
 
 function getLocaleFromLanguageTag(
@@ -21,11 +21,14 @@ function getLocaleFromLanguageTag(
   const splitted = languageTag.split("-");
   const languageCode = splitted[0];
   const countryCode = getCountryCode(splitted) || countryCodeFallback;
+  const formatedLanguageTag = countryCode
+    ? `${languageCode}-${countryCode}`
+    : languageCode;
 
   return {
     languageCode: languageCode,
     countryCode,
-    languageTag: `${languageCode}-${countryCode}`,
+    languageTag: formatedLanguageTag,
     isRTL: USES_RTL_LAYOUT.includes(languageCode),
   };
 }
