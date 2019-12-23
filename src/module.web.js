@@ -41,6 +41,7 @@ function getFirstCountryCode(languageTags: $ReadOnlyArray<string>): ?string {
       return countryCode;
     }
   }
+  return "FR"; // default to 'FR'
 }
 
 function generateConstants(
